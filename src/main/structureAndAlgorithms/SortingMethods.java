@@ -98,7 +98,7 @@ public class SortingMethods {
                 s++;
                 e--;
             }
-
+// I want to discuss this
 //            if (s == e) {
 //                s++;
 //                e--;
@@ -114,8 +114,80 @@ public class SortingMethods {
             quickSort(array, s, end);
         }
     }
+
+    public void merge(int[] array, int s, int m, int e) {
+
+        int sizeL = m - s + 1;// I will put middle in the left one
+        int sizeR = e - m; //
+
+        // Create array to sort
+        int[] arrayL = new int[sizeL];
+        int[] arrayR = new int[sizeR];
+
+        // populate those array
+        for (int i = 0; i < sizeL; i++) {
+            arrayL[i] = array[s + i];
+        }
+        for (int i = 0; i < sizeR; i++) {
+            arrayR[i] = array[i+ m + 1];
+        }
+
+        // merge them
+
+        // cursor for merged array populator
+        int k = 0; // from new left
+        int l = 0; // from new right
+
+        // do this until one sub array is emptied
+        while (k < sizeL && l < sizeR) {
+            if (arrayL[k] > arrayR[l]) {
+                array[s] = arrayR[l];
+                l++;
+            } else if (arrayL[k] <= arrayR[l]) {
+                array[s] = arrayL[k];
+                k++;
+            }
+            s++;
+        }
+
+        // do this to empty the remaining right array
+        while (l < sizeR) {
+            array[s] = arrayR[l];
+            l++;
+            s++;
+        }
+
+        // do this to empty the remaining left array
+        while (k < sizeL) {
+            array[s] = arrayL[k];
+            k++;
+            s++;
+        }
+
+    }
+
+    public void sort(int[] array, int s, int e) {
+
+        // if not it is a one data array
+        if (e > s) {
+            int m = (s+e)/2;
+            // call recursively on left part so it gets smaller
+            sort(array,s,m);
+            // same on right part
+            sort(array,m+1,e);
+            // merge it
+            merge(array,s,m,e);
+        }
+        //sort left then right
+
+    }
+
+
+
+
+
 }
 
-//class SortingMethods2 <T extends Number>{
+
 
 
