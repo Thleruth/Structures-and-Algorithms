@@ -94,7 +94,7 @@ public class SortingMethods {
 
             // if start index is still smaller (could that those index cross with previous while) then swap
             if (s <= e) {
-                swapForArray(s,e);
+                swapForArray(s, e);
                 s++;
                 e--;
             }
@@ -115,77 +115,69 @@ public class SortingMethods {
         }
     }
 
-    public void merge(int[] array, int s, int m, int e) {
-
-        int sizeL = m - s + 1;// I will put middle in the left one
-        int sizeR = e - m; //
-
-        // Create array to sort
-        int[] arrayL = new int[sizeL];
-        int[] arrayR = new int[sizeR];
-
-        // populate those array
-        for (int i = 0; i < sizeL; i++) {
-            arrayL[i] = array[s + i];
-        }
-        for (int i = 0; i < sizeR; i++) {
-            arrayR[i] = array[i+ m + 1];
-        }
-
-        // merge them
-
-        // cursor for merged array populator
-        int k = 0; // from new left
-        int l = 0; // from new right
-
-        // do this until one sub array is emptied
-        while (k < sizeL && l < sizeR) {
-            if (arrayL[k] > arrayR[l]) {
-                array[s] = arrayR[l];
-                l++;
-            } else if (arrayL[k] <= arrayR[l]) {
-                array[s] = arrayL[k];
-                k++;
-            }
-            s++;
-        }
-
-        // do this to empty the remaining right array
-        while (l < sizeR) {
-            array[s] = arrayR[l];
-            l++;
-            s++;
-        }
-
-        // do this to empty the remaining left array
-        while (k < sizeL) {
-            array[s] = arrayL[k];
-            k++;
-            s++;
-        }
-
-    }
-
     public void sort(int[] array, int s, int e) {
 
-        // if not it is a one data array
+        // do this until array is finished (basically s = e, meaning array of 1 with last array value)
         if (e > s) {
-            int m = (s+e)/2;
+            int m = (s + e) / 2;
             // call recursively on left part so it gets smaller
-            sort(array,s,m);
+            sort(array, s, m);
             // same on right part
-            sort(array,m+1,e);
-            // merge it
-            merge(array,s,m,e);
+            sort(array, m + 1, e);
+
+            // merging work
+
+            // Creating temporary subarrays
+            int sizeL = m - s + 1;// I will put middle in the left one
+            int sizeR = e - m; //
+
+            // Create array to sort
+            int[] arrayL = new int[sizeL];
+            int[] arrayR = new int[sizeR];
+
+            // populate those array (left first)
+            for (int i = 0; i < sizeL; i++) {
+                arrayL[i] = array[s + i];
+            }
+
+            // then right
+            for (int i = 0; i < sizeR; i++) {
+                arrayR[i] = array[i + m + 1];
+            }
+
+            // merge them
+
+            // cursors for merged array populators
+            int k = 0; // from new left
+            int l = 0; // from new right
+
+            // do this until one sub array is emptied
+            while (k < sizeL && l < sizeR) {
+                if (arrayL[k] > arrayR[l]) {
+                    array[s] = arrayR[l];
+                    l++;
+                } else if (arrayL[k] <= arrayR[l]) {
+                    array[s] = arrayL[k];
+                    k++;
+                }
+                s++;
+            }
+
+            // do this to empty the remaining right array
+            while (l < sizeR) {
+                array[s] = arrayR[l];
+                l++;
+                s++;
+            }
+
+            // do this to empty the remaining left array
+            while (k < sizeL) {
+                array[s] = arrayL[k];
+                k++;
+                s++;
+            }
         }
-        //sort left then right
-
     }
-
-
-
-
-
 }
 
 
