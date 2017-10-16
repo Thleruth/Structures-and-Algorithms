@@ -28,28 +28,6 @@ public class SortingMethods {
         }
     }
 
-//    public void InsertSortF(int[] array) {
-//
-//        int maxIndex = 0;
-//        this.array = array;
-//
-//        for(int i = 1; i < array.length; i ++){
-//            // try to find a spot where it is smaller than maxIndex but not MaxIndex-1
-//            while (maxIndex >= 0 && array[i] < array[maxIndex]) {
-//                // we found the spot
-//                if (maxIndex == 0 || array[i] > array[maxIndex-1]) {
-//                    for(int j = 0; j < (i-maxIndex); j++) {
-//                        swapForArray(i-j-1,i-j);
-//                    }
-//                    // forcing exit
-//                    maxIndex = 0;
-//                }
-//                maxIndex--;
-//            }
-//            maxIndex = i;
-//        }
-//    }
-
     public void InsertSort(int[] array) {
 
         this.array = array;
