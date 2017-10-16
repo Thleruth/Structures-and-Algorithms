@@ -72,15 +72,12 @@ public class SortingMethods {
 
             // if start index is still smaller (could that those index cross with previous while) then swap
             if (s <= e) {
-                swapForArray(s, e);
+                if (s != e) {
+                    swapForArray(s, e);
+                }
                 s++;
                 e--;
             }
-// I want to discuss this
-//            if (s == e) {
-//                s++;
-//                e--;
-//            }
         }
 
         // quicksort left part until array is of size 1 (as it would be start = e)
@@ -93,15 +90,15 @@ public class SortingMethods {
         }
     }
 
-    public void sort(int[] array, int s, int e) {
+    public void mergesort(int[] array, int s, int e) {
 
         // do this until array is finished (basically s = e, meaning array of 1 with last array value)
         if (e > s) {
             int m = (s + e) / 2;
             // call recursively on left part so it gets smaller
-            sort(array, s, m);
+            mergesort(array, s, m);
             // same on right part
-            sort(array, m + 1, e);
+            mergesort(array, m + 1, e);
 
             // merging work
 
