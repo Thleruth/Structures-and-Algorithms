@@ -6,13 +6,8 @@ package main.structureAndAlgorithms;
 
 public class ArrayList {
 
-    String[] array;
-    private int size;
-
-    public ArrayList() {
-        this.size = 16;
-        array = new String[size];
-    }
+    private int size = 16;
+    String[] array = new String[size];
 
     public void add(String a) {
         for (int i = 0; i < array.length; i++) {

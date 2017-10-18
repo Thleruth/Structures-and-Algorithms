@@ -6,16 +6,11 @@ package main.structureAndAlgorithms;
 
 public class HashMap {
 
-    private String[][] table;
-    private int size;
-
-    public HashMap() {
-        this.size = 1000000; // Could also make it dynamic but not sure how to deal with negative value then
-        table = new String[size][];
-    }
+    private int size = 1000000;
+    private String[][] table = new String[size][];
 
     public void add(String a) {
-        int indexA = a.hashCode() % size;
+        int indexA = Math.abs(a.hashCode() % size); // somehow modulo return negative value as well :o
         if (table[indexA] == null) { // first element
             String[] table2 = new String[size];
             table2[0] = a;
@@ -30,14 +25,14 @@ public class HashMap {
     }
 
     public void retrieve(String a) {
-        int indexA = a.hashCode() % size;
+        int indexA = Math.abs(a.hashCode() % size);
         if (table[indexA] == null) { // no elements at all
             System.out.println(a + " not found");
         } else { // some elements
             int i = 0; // seeker
             while (table[indexA][i] != null) {
                 if (table[indexA][i].equals(a)) {
-                    System.out.println("found at index " + indexA);
+                    System.out.println(a + " found at index " + indexA);
                     return;
                 }
                 i++;
