@@ -1,18 +1,23 @@
 package main.structureAndAlgorithms;
 
+import java.util.ArrayList;
+
 /**
  * Created by Thomas Leruth on 10/18/17
  */
 
 public class BinaryTree {
 
-    private binaryNode top;
+    binaryNode top;
+    ArrayList<Integer> list = new ArrayList<>();
 
     public BinaryTree() {
         this.top = null;
     }
 
     public void add(int i) {
+
+
         if (top == null) {
             top = new binaryNode(i);
         }
@@ -34,6 +39,25 @@ public class BinaryTree {
                 }
             }
         }
+    }
+
+    public ArrayList<Integer> retrieveAll(BinaryTree tree, binaryNode top) {
+
+        binaryNode searcher = top;
+
+        if (searcher.left != null) { // go to the left
+            retrieveAll(tree, searcher.left);
+        }
+        if (searcher.right != null) {
+            list.add(searcher.value);
+            retrieveAll(tree, searcher.right);
+        }
+
+        if (searcher.right == null && searcher.left == null) {
+            list.add(searcher.value);
+        }
+
+        return list;
     }
 
 
